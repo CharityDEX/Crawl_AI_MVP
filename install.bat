@@ -1,6 +1,8 @@
 @echo off
 echo Installing packages...
 
+pip install notebook
+
 pip3 install aiohappyeyeballs==2.4.3 ^
 aiohttp==3.10.10 ^
 aiosignal==1.3.1 ^
