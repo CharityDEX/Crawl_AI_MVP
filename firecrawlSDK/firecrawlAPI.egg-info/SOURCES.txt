@@ -1,0 +1,8 @@
+setup.py
+firecrawlAPI/__init__.py
+firecrawlAPI/firecrawl_api.py
+firecrawlAPI.egg-info/PKG-INFO
+firecrawlAPI.egg-info/SOURCES.txt
+firecrawlAPI.egg-info/dependency_links.txt
+firecrawlAPI.egg-info/requires.txt
+firecrawlAPI.egg-info/top_level.txt

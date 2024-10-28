@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: firecrawlAPI
+Version: 0.1
+Summary: A sample Python package
+Author: CrawlAI Team
+Author-email: your.email@example.com
+Requires-Dist: requests
+Requires-Dist: pytest
+Requires-Dist: python-dotenv
+Requires-Dist: websockets
+Requires-Dist: asyncio
+Requires-Dist: nest-asyncio
