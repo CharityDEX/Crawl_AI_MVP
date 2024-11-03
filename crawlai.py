@@ -4,6 +4,7 @@ load_dotenv()
 QDRANT_API_KEY = os.environ["QDRANT_API_KEY"]
 QDRANT_COLLECTION_NAME = "crawlai"
 QDRANT_ENDPOINT = "https://78440471-16dc-4da1-8f1d-3ec406c0417c.us-east4-0.gcp.cloud.qdrant.io:6333"
+GRADIO_PORT = 80
 
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_openai import OpenAI
@@ -271,4 +272,4 @@ with gr.Blocks() as demo:
 
 if __name__ == "__main__":
     #build_assistant("please make an assistant for help to apply and study freshman year at santa clara univeristy. I am computer science major", [])
-    demo.launch(server_name="0.0.0.0", server_port=8080)
+    demo.launch(server_name="0.0.0.0", server_port=GRADIO_PORT)
