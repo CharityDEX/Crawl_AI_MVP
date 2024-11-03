@@ -1,5 +1,9 @@
 from dotenv import load_dotenv
+import os
 load_dotenv()
+QDRANT_API_KEY = os.environ["QDRANT_API_KEY"]
+QDRANT_COLLECTION_NAME = "crawlai"
+QDRANT_ENDPOINT = "https://78440471-16dc-4da1-8f1d-3ec406c0417c.us-east4-0.gcp.cloud.qdrant.io:6333"
 
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_openai import OpenAI
@@ -212,9 +216,9 @@ def build_assistant(message, history):
     vector_store = QdrantVectorStore.from_documents(
         documents=splits,
         embedding=embeddings_model,
-        url="http://localhost:6334",
-        prefer_grpc=True,
-        collection_name="user1",
+        url=QDRANT_ENDPOINT,
+        collection_name=QDRANT_COLLECTION_NAME,
+        api_key=QDRANT_API_KEY
     )
 
     print("loaded vectorstore")
