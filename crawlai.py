@@ -15,8 +15,8 @@ import aiohttp
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores.utils import filter_complex_metadata
-from langchain_chroma import Chroma
 from langchain_openai import OpenAI
+from langchain_qdrant import QdrantVectorStore
 from langchain.chains import create_history_aware_retriever
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.chains.combine_documents import create_stuff_documents_chain
@@ -55,7 +55,7 @@ gen_searches_prompt = ChatPromptTemplate.from_messages(
     [
         ("system", gen_searches_sys_prompt),
         ("human", "{input}"),
-        ("system", "\n\Three Web Searches (separated by new lines):")
+        ("system", "\nThree Web Searches (separated by new lines):")
     ]
 )
 
@@ -64,7 +64,7 @@ gen_searches_chain = gen_searches_prompt | gen_searches_llm | StrOutputParser()
 
 print("created search gen llm")
 
-def get_top_google_results(query, num_results=5):
+def get_top_google_results(query, num_results=1):
     # Perform the search and return the top links
     return [link for link in search(query, num_results=num_results)]
 
@@ -153,14 +153,14 @@ main_llm = OpenAI()
 
 print("created chains")
 
-def langchain_to_gradio_history(langchain_history):
-    gradio_history = []
-    for i in range(0, len(langchain_history), 2):
-        user_message = langchain_history[i + 1].content
-        ai_response = langchain_history[i].content if i + 1 < len(langchain_history) else ""
-        gradio_history.append(ChatMessage(role="user", content=user_message))
-        gradio_history.append(ChatMessage(role="assistant", content=ai_response))
-    return gradio_history
+def convert_langchain_to_gradio(messages):
+    gradio_messages = []
+    for msg in messages:
+        if isinstance(msg, AIMessage):
+            gradio_messages.append(ChatMessage(role="assistant", content=msg.content))
+        elif isinstance(msg, HumanMessage):
+            gradio_messages.append(ChatMessage(role="user", content=msg.content))
+    return gradio_messages
 
 chat_history = []
 vector_store = None
@@ -172,7 +172,7 @@ def ask_question(question, history):
     chat_history.append(HumanMessage(content = question))
     print(ai_msg)
     chat_history.append(AIMessage(content = ai_msg["answer"]))
-    return "", langchain_to_gradio_history(chat_history)
+    return "", convert_langchain_to_gradio(chat_history)
 
 def build_assistant(message, history):
     if not history:
@@ -205,6 +205,23 @@ def build_assistant(message, history):
     splits = text_splitter.split_documents(docs)
     splits = filter_complex_metadata(splits)
     
+    print("loading vectorstore")
+    history.append(ChatMessage(role="assistant", content="loading vectorstore"))
+    yield "", history
+
+    vector_store = QdrantVectorStore.from_documents(
+        documents=splits,
+        embedding=embeddings_model,
+        url="http://localhost:6334",
+        prefer_grpc=True,
+        collection_name="user1",
+    )
+
+    print("loaded vectorstore")
+    history.append(ChatMessage(role="assistant", content="loaded vectorstore"))
+    yield "", history
+
+    '''
     global vector_store
     print("loading chroma")
     history.append(ChatMessage(role="assistant", content="loading chroma"))
@@ -213,6 +230,7 @@ def build_assistant(message, history):
     print("loaded chroma")
     history.append(ChatMessage(role="assistant", content="loaded chroma"))
     yield "", history
+    '''
 
     retriever = vector_store.as_retriever(search_type="mmr", search_kwargs={"k": 30, "fetch_k": 10, "lambda_mult": 0.5})
 
