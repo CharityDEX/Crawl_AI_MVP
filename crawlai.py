@@ -168,10 +168,14 @@ def convert_langchain_to_gradio(messages):
 
 chat_history = []
 vector_store = None
+rag_chain = None
 
 def ask_question(question, history):
     global chat_history
     global rag_chain
+    if not rag_chain:
+        chat_history.append(AIMessage(content = "Please construct an assistant first!"))
+        return "", convert_langchain_to_gradio(chat_history)
     ai_msg = rag_chain.invoke({"input": question, "chat_history": chat_history})
     chat_history.append(HumanMessage(content = question))
     print(ai_msg)
