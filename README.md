@@ -8,6 +8,14 @@
 
    This will install the react-router library
 
-5. in the same terminal with admin priveledges, navigate to the directory with the react project. In this case, that will likely be
+3. in the same terminal with admin priveledges, navigate to the directory with the react project. In this case, that will likely be
 
-   C:\Users\* Your_Name *\Downloads\* Path to \Crawl_AI_MVP on your local machine *\crawl_AI_react_full_code
+   C:\Users\ *Your_Name* \Downloads\ *Path to \Crawl_AI_MVP on your local machine* \crawl_AI_react_full_code
+
+4. run the command
+
+     npm start
+
+  This will start the React server, and open a tab on your computer at localhost:3000 for the site
+
+To exit the React app, return to the terminal and press ctrl + c. The terminal will ask if you wish to terminate the application (Y/N). Type in Y, then press enter. Finally, close the terminal.
