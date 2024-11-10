@@ -9,11 +9,13 @@ v22.11.0
 
    This will install the react-router library
 
-4. in the same terminal with admin priveledges, navigate to the directory with the react project. In this case, that will likely be
+4. npm install react-scripts
+
+5. in the same terminal with admin priveledges, navigate to the directory with the react project. In this case, that will likely be
 
    C:\Users\ *Your_Name* \Downloads\ *Path to \Crawl_AI_MVP on your local machine* \crawl_AI_react_full_code
 
-5. run the command
+6. run the command
 
      npm start
 
