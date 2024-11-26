@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { addAssisstant, toggleChatList, setCurrentChat, setCurrentAssisstant } from "@/app/redux/slices/asstListSlice";
 import { newChatHistory } from '@/app/redux/slices/currentChatSlice';
+import { enterEditMode, exitEditMode } from '@/app/redux/slices/editAsstSlice';
 
 const Nav = () => {
   const navOpen = useSelector(state => state.navBar.openNav);
@@ -20,6 +21,7 @@ const Nav = () => {
 
   const handleAddAssisstant = () => {
     dispatch(addAssisstant());
+    dispatch(enterEditMode());
   }
 
   const handleAssistantClick = (asstName) => {
@@ -33,13 +35,19 @@ const Nav = () => {
     }));
   };
 
-  if (!navOpen) return null;
-
   const handleChatClick = (chatName, asstName) => {
     dispatch(setCurrentChat(chatName));
     dispatch(setCurrentAssisstant(asstName));
     dispatch(newChatHistory());
+    dispatch(exitEditMode());
   }
+
+  const editBtnClick = (asstName) => {
+    dispatch(setCurrentAssisstant(asstName));
+    dispatch(enterEditMode());
+  }
+
+  if (!navOpen) return null;
 
   return (
     <div className="nav-container">
@@ -61,7 +69,7 @@ const Nav = () => {
                   <button onClick={() => handleAssistantClick(asstName)} className='asst-btn'>{asstName}</button>
                 </div>
                 <div className='edit-btn-container'>
-                  <button className='edit-btn'>edit</button>
+                  <button className='edit-btn' onClick={() => editBtnClick(asstName)}>edit</button>
                 </div>
               </div>
 

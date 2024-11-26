@@ -9,6 +9,8 @@ button:hover {
   position: absolute;
   top: max(8vh, 50px);
   border-right: 2px solid #e9e9e9;
+  overflow-y: hidden;
+  transition: width 0.3s ease;
 }
 
 /*Add Assisstant button*/
@@ -67,7 +69,7 @@ button:hover {
   width: 100%;
   height: 30px;
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 /*Per assisstant, chats list*/

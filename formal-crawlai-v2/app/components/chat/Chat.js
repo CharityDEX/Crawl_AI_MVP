@@ -10,6 +10,16 @@ import { useSelector } from 'react-redux';
 const Chat = () => {
   const height = useSelector(state => state.height.height);
   const navOpen = useSelector(state => state.navBar.openNav);
+  const asstEditorOpen = useSelector(state => state.editAsst.openEditor);
+
+  if (asstEditorOpen) {
+    return (
+      <div className='chat-container'>
+        <Header />
+      </div>
+    )
+  }
+
   return (
     <div className="chat-container">
       <Header />

@@ -24,12 +24,12 @@ button:hover {
   position: fixed;
   width: 100%;
   background-color: #FFFFFF;
+  z-index: 3;
 }
 
 .assisstant-name-container {
   width: calc(100%-500px);
   height: 100%;
-  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -95,7 +95,7 @@ button:hover {
 /*Styles for chat body*/
 
 .chat-body {
-  padding-top: max(8vh, 50px);
+  margin-top: max(8vh, 50px);
   width: 100%;
   display: flex;
   align-items: center;

@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { buttonPressed } from '@/app/redux/slices/navBarSlice'
 import { addChat } from '@/app/redux/slices/asstListSlice'
 import { newChatHistory } from '@/app/redux/slices/currentChatSlice';
+import { exitEditMode } from '@/app/redux/slices/editAsstSlice';
 
 const Header = () => {
   const currentAssisstant = useSelector(state => state.asstList.currentAssisstant);
@@ -23,6 +24,7 @@ const Header = () => {
     e.preventDefault();
     dispatch(addChat(currentAssisstant));
     dispatch(newChatHistory());
+    dispatch(exitEditMode());
   }
 
   return (

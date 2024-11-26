@@ -7,12 +7,14 @@ export const editAsstSlice = createSlice({
     openEditor: false,
   },
   reducers: {
-    buttonPressed: (state) => {
-      state.openEditor = !state.openEditor;
-      console.log(5);
+    enterEditMode: (state) => {
+      state.openEditor = true;
+    },
+    exitEditMode: (state) => {
+      state.openEditor = false;
     },
   },
 });
 
-export const { buttonPressed } = editAsstSlice.actions;
+export const { enterEditMode, exitEditMode } = editAsstSlice.actions;
 export default editAsstSlice.reducer;

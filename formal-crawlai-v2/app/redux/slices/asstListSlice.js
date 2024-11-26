@@ -62,6 +62,17 @@ export const asstListSlice = createSlice({
           Object.entries(state.assisstants).filter(([key]) => key !== currentAssisstantName)
         ),
       }
+    },
+    changeAsstName: (state, action) => {
+      const currentAssisstantName = state.currentAssisstant;
+      
+      state.assisstants[action.payload] = state.assisstants[currentAssisstantName];
+      delete state.assisstants[currentAssisstantName];
+      
+      state.openChatLists[action.payload] = state.openChatLists[currentAssisstantName];
+      delete state.openChatLists[currentAssisstantName];
+      
+      state.currentAssisstant = action.payload;
     }
   }
 });
@@ -74,6 +85,7 @@ export const {
   setCurrentAssisstant,
   orderChats,
   orderAssisstants,
+  changeAsstName,
 } = asstListSlice.actions;
 
 export default asstListSlice.reducer;

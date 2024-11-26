@@ -1,0 +1,62 @@
+.edit-container {
+  margin-top: max(8vh, 50px);
+  width: 100%;
+  height: calc(100% - max(8vh, 50px));
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  transition: width 0.3s ease, margin-left 0.3s ease;
+/*
+  align-items: center;
+*/
+}
+
+.edit-container.nav-open {
+  width: calc(100% - min(30%, 300px));
+  margin-left: min(30%, 300px);
+}
+
+.asst-name-editor {
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+.name-form-container {
+  width: 50vw;
+  max-width: 500px;
+  background-color: #e9e9e9;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.name-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.new-name {
+  border: none;
+  outline: none;
+  resize: none;
+  background-color: transparent;
+  width: 85%;
+  font-size: 18px;
+  padding: 10px;
+}
+
+.name-send-button {
+  background-color: black;
+  color: white;
+  padding: 8px
+}
+
+.name-send-button:hover {
+  color: black;
+  background-color: #999999;
+}
+
+.asst-skill {
+  height: 150px;
+}

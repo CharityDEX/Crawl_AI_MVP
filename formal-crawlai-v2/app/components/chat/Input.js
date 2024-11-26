@@ -11,7 +11,6 @@ import { orderChats, orderAssisstants } from '@/app/redux/slices/asstListSlice';
 const Input = () => {
   const [input, setInput] = useState('');
   const height = useSelector(state => state.height.height);
-  const { currentChat, currentAssisstant } = useSelector(state => state.asstList);
   const inputRef = useRef(null);
 
   const dispatch = useDispatch();
