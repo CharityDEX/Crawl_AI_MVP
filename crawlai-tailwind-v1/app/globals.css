@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btns {
+  @apply pb-1 text-center rounded-3xl hover:bg-slate-300 hover:shadow-lg;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+:root {
+  scrollbar-color: #f1f5f9 white; /* Thumb color and track color */
+}
