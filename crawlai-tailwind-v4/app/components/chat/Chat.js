@@ -12,7 +12,12 @@ const Chat = () => {
   const navOpen = useSelector(state => state.navBar.openNav);
   const asstEditorOpen = useSelector(state => state.editAsst.openEditor);
 
-  if (asstEditorOpen) {
+  const currentAssisstant = useSelector(state => state.asstList.currentAssisstant);
+  const assisstants = useSelector(state => state.asstList.assisstants);
+  let vectorBuilt = assisstants[currentAssisstant].vectorBuilt;
+
+
+  if (asstEditorOpen && !vectorBuilt) {
     return (
       <div className="w-full flex flex-col">
         <Header />
@@ -26,12 +31,14 @@ const Chat = () => {
     <div className="w-full flex flex-col h-screen">
       <Header />
       <div
-        className={`flex-1 flex flex-col mt-20 transition-transform duration-300 ease-in-out ${
-          navOpen ? "translate-x-[15%]" : ""
-        }`}
+        className={`flex-1 w-3/5 flex flex-col mt-20 transition-transform duration-300 ease-in-out 
+          ${navOpen 
+            ? (asstEditorOpen ? "translate-x-[60%]" : "translate-x-1/2")
+            : (asstEditorOpen ? "translate-x-[40%]" : "translate-x-1/3")}
+        `}
       >
         <div
-          className="overflow-y-auto mx-auto w-3/5 xl:w-1/2"
+          className="overflow-y-auto mx-auto w-full"
           style={{ height: `calc(100vh - 80px - ${height + 30}px)` }}
         >
           <ChatHistory />

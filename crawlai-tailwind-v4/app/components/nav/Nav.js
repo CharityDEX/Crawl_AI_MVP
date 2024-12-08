@@ -5,7 +5,7 @@ import React, {useState} from "react";
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { addAssisstant, toggleChatList, setCurrentChat, setCurrentAssisstant } from "@/app/redux/slices/asstListSlice";
+import { addAssisstant, toggleChatList, setCurrentChat, setCurrentAssisstant, orderAssisstants } from "@/app/redux/slices/asstListSlice";
 import { newChatHistory } from '@/app/redux/slices/currentChatSlice';
 import { enterEditMode, exitEditMode } from '@/app/redux/slices/editAsstSlice';
 
@@ -20,6 +20,7 @@ const Nav = () => {
 
   const handleAddAssisstant = () => {
     dispatch(addAssisstant());
+    dispatch(orderAssisstants());
     dispatch(enterEditMode());
   }
 
@@ -47,7 +48,7 @@ const Nav = () => {
   }
 
   return (
-    <div className={`fixed top-20 bottom-0 w-1/4 lg:w-1/5 overflow-y-auto bg-white flex flex-col items-center transition-transform duration-300 border-r-2 border-r-slate-200 ease-in-out ${
+    <div className={`fixed z-20 top-20 bottom-0 w-1/4 lg:w-1/5 overflow-y-auto bg-white flex flex-col items-center transition-transform duration-300 border-r-2 border-r-slate-200 ease-in-out ${
           navOpen ? "translate-x-0" : "-translate-x-full"
         }`}>
       <div className='w-full mt-2 flex flex-col items-center justify-center'>

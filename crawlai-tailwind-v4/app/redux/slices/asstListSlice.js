@@ -10,6 +10,7 @@ export const asstListSlice = createSlice({
       "Basic Assistant": {
         chats: ["Chat1"],
         vectorBuilt: false,
+        loggedMessages: [],
       }
     },
     currentAssisstant: "Basic Assistant",
@@ -26,10 +27,11 @@ export const asstListSlice = createSlice({
       state.currentChat = chatName
     },
     addAssisstant: (state) => {
-      const newAssisstantName = `Basic Assistant ${Object.keys(state.assisstants).length + 1}`
+      const newAssisstantName = `Basic Assistant ${Object.keys(state.assisstants).length + 1}`;
       state.assisstants[newAssisstantName] = {
         chats: ["Chat1"],
         vectorBuilt: false,
+        loggedMessages: [],
       }
       state.currentAssisstant = newAssisstantName
       state.currentChat = "Chat1"
@@ -82,6 +84,22 @@ export const asstListSlice = createSlice({
       delete state.openChatLists[currentAssisstantName];
       
       state.currentAssisstant = action.payload;
+    },
+    buildVector: state => {
+      const currentAssisstantName = state.currentAssisstant;
+      state.assisstants[currentAssisstantName].vectorBuilt = true;
+    },
+    clearVector: state => {
+      const currentAssisstantName = state.currentAssisstant;
+      state.assisstants[currentAssisstantName].vectorBuilt = false;
+    },
+    logNewMessage: (state, action) => {
+      const currentAssisstantName = action.payload[1];
+      state.assisstants[currentAssisstantName].loggedMessages.push(action.payload[0]);
+    },
+    clearMessageLog: (state) => {
+      const currentAssisstantName = state.currentAssisstant;
+      state.assisstants[currentAssisstantName].loggedMessages = [];
     }
   }
 });
@@ -95,6 +113,10 @@ export const {
   orderChats,
   orderAssisstants,
   changeAsstName,
+  buildVector,
+  clearVector,
+  logNewMessage,
+  clearMessageLog,
 } = asstListSlice.actions;
 
 export default asstListSlice.reducer;

@@ -42,7 +42,7 @@ const Header = () => {
   }
 
   return (
-    <div className="w-full h-20 fixed top-0 flex items-center justify-around z-10 bg-slate-100">
+    <div className="w-full h-20 fixed top-0 left-0 right-0 flex items-center justify-around z-10 bg-slate-100">
       <div className="w-1/5 xl:w-1/6 ml-6 h-full flex justify-between items-center">
         <button className="btns text-2xl w-12 h-1/2" onClick={handleNavPress}>
           <FontAwesomeIcon icon={faAngleDoubleRight} />

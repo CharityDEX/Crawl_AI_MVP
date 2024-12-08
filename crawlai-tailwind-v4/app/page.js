@@ -29,9 +29,11 @@ const App = () => {
   return (
     <div className='w-screen h-screen overflow-x-hidden'>
       <Provider store={store}>
-        <Chat />
         <Nav />
-        <AssisstantEditor />
+        <div className='flex flex-row justify-around'>
+          <AssisstantEditor />
+          <Chat />
+        </div>
       </Provider>
     </div>
   );

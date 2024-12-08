@@ -44,7 +44,7 @@ const Input = () => {
 
   return (
     <div className='w-full flex items-center justify-center fixed bottom-0' style={{height: `${height + 30}px`}}>
-      <form onSubmit={handleSubmit} className='bg-slate-100 w-3/5 xl:w-1/2 flex items-center justify-around rounded-3xl mb-2 focus-within:ring-2 focus-within:ring-black'>
+      <form onSubmit={handleSubmit} className='bg-slate-100 w-full flex items-center justify-around rounded-3xl mb-2 focus-within:ring-2 focus-within:ring-black'>
         <textarea
           ref={inputRef}
           className="w-[86%] rounded-2xl resize-none bg-inherit text-lg outline-none p-2"

@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const editAsstSlice = createSlice({
   name: 'editAsst',
   initialState: {
-    openEditor: false,
+    openEditor: true,
   },
   reducers: {
     enterEditMode: (state) => {
