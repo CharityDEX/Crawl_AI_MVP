@@ -3,7 +3,7 @@
 import { Provider } from 'react-redux'
 import { store } from '../redux/store'
 
-import LoginApp from './login.js';
+import LoginApp from './Login.js';
 
 const Login = () => {
   return (
